@@ -31,8 +31,6 @@ namespace ds
             {
                 node->mChildren[index] = new TreeNode();
             }
-            if (node->mEndOfWord)
-                node->mNumPathWords++;
             node = node->mChildren[index];
         }
         node->mEndOfWord = true;
@@ -52,45 +50,25 @@ namespace ds
             node = node->mChildren[index];
         }
 
-        vector<string> tails;
-        string tail;
-        readSuggestions(node, tails, -1, tail);
-
-        for (auto i : tails)
-        {
-            string w = key + i;
-            result.push_back(w);
-        }
+        string k = key;
+        readSuggestions(node, result, k);
 
         return result;
     }
 
-    void TreeNode::readSuggestions(TreeNode *node, vector<string>& tails, int curIndex, string &suggestion)
+    void TreeNode::readSuggestions(TreeNode *node, vector<string>& res, string &key)
     {
-        if (curIndex >= 0)
-            suggestion.push_back((char)(curIndex + 'a'));
-
         if (node->mEndOfWord)
-        {
-            tails.push_back(suggestion);
-            if (node->mNumPathWords == 0)
-                return;
-            node->mNumPathWords--;
-        }
+            res.push_back(key);
 
-        int idx = 0;
-        while (idx < mAlphabetSize)
+        for (int i = 0; i < mAlphabetSize; i++)
         {
-            if (node->mChildren[idx] != NULL)
+            if (node->mChildren[i] != NULL)
             {
-                readSuggestions(node->mChildren[idx], tails, idx, suggestion);
-                cout << "Suggestion: " << suggestion << endl;
-                if (curIndex >= 0)
-                    suggestion = (char)(curIndex + 'a');
-                else
-                    suggestion = "";
+                key.push_back((char)(i + 'a'));
+                readSuggestions(node->mChildren[i], res, key);
+                key.pop_back();
             }
-            idx++;
         }
     }
 

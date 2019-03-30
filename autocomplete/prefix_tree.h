@@ -14,12 +14,11 @@ public:
 
     void insert(TreeNode *root, const string& key);
     vector<string> getAutoComplete(TreeNode *root, const string& key);
-    void readSuggestions(TreeNode *node, vector<string> &result, int curIndex, string &suggestion);
+    void readSuggestions(TreeNode *node, vector<string> &result, string &key);
 
 private:
     int mAlphabetSize   = 256;
     bool mEndOfWord     = false;
-    int mNumPathWords   = 0;
     vector<TreeNode *> mChildren;
 };
 

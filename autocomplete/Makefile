@@ -8,8 +8,8 @@ ODIR		= obj
 %.o: %.cpp $(DEPS)
 	$(C++) -c -o $@ $< $(C++FLAGS)
 
-prefix_tree: $(OBJ)
-	$(C++) -o $@ $^ $(C++FLAGS)
+all: $(OBJ)
+	$(C++) -o autocomplete $^ $(C++FLAGS)
 
 .PHONY: clean
 

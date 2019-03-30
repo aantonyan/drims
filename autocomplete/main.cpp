@@ -18,7 +18,7 @@ int main()
     root->insert(root, "tort");
     root->insert(root, "toma");
 
-    vector<string> result = root->getAutoComplete(root, "c");
+    vector<string> result = root->getAutoComplete(root, "t");
     for (auto i : result)
         cout << "Found a word: " << i << endl;
 
