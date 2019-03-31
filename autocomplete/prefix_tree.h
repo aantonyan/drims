@@ -17,7 +17,7 @@ public:
     void readSuggestions(TreeNode *node, vector<string> &result, string &key);
 
 private:
-    int mAlphabetSize   = 256;
+    int mAlphabetSize   = 26;
     bool mEndOfWord     = false;
     vector<TreeNode *> mChildren;
 };
